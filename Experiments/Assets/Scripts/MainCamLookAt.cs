@@ -8,6 +8,8 @@ public class MainCamLookAt : MonoBehaviour
     private Vector3 MyPos;
     [SerializeField]
     Camera MainCam;
+    [SerializeField]
+    private float MyY;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +54,7 @@ public class MainCamLookAt : MonoBehaviour
             {
                 MyPos.z = -35.0f;
             }
-            MyPos.y = 21.75f;
+            MyPos.y = MyY;
             transform.position = MyPos;
         }
     }
