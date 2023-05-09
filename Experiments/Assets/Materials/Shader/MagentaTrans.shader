@@ -99,10 +99,8 @@
                     clip(color.a - 0.001);
                     #endif
 
-                    if (color.x > 0.8) {
-                    if (color.z > 0.8) {
-                                color = 0, 0, 0, 1;
-                    }
+                    if (color.x > 0.8 && color.z > 0.8 && color.y < 0.2) {
+                        color = 0, 0, 0, 1;
                     }
 
                     return color;

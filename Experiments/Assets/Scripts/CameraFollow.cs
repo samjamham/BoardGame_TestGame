@@ -6,6 +6,9 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField]
     private GameObject FollowCam;
+    [SerializeField]
+    private GameObject Player;
+    public float Height;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +21,9 @@ public class CameraFollow : MonoBehaviour
         Transform NewTransform = FollowCam.transform;
 
         Vector3 NewPosition = NewTransform.position;
-        NewPosition.y -= 1000;
+        NewPosition.y += Height;
+        NewPosition.x -= Player.transform.position.x;
+        NewPosition.z -= Player.transform.position.z;
         transform.SetPositionAndRotation(NewPosition, NewTransform.rotation);
 
     }
