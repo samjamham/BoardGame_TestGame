@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    public GameObject Board;
-    public Vector3 MyPos = new Vector3(0,0,0);
-    public ThirdPersonCam myCam;
-
     private float SpeedMod = 7.0f;
+    private float MaxSpeed = 10;
     private Rigidbody MyBody;
     private float DistanceToGround;
 
     // Start is called before the first frame update
     void Start()
     {
-        MyPos = transform.position - new Vector3(0, 23.4f, 0);
         MyBody = GetComponent<Rigidbody>();
         DistanceToGround = GetComponent<CapsuleCollider>().bounds.extents.y;
     }
@@ -23,36 +19,38 @@ public class PlayerControls : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (myCam.enabled == true)
-        {
+        if (IsGrounded())
+            { 
             if (Input.GetKey("w"))
             {
-                MyPos += transform.forward * Time.deltaTime * SpeedMod;
+                MyBody.AddForce(transform.forward * -10);
             }
             if (Input.GetKey("a"))
             {
-                MyPos -= transform.right * Time.deltaTime * SpeedMod;
+                MyBody.AddForce(transform.right * 10);
             }
             if (Input.GetKey("s"))
             {
-                MyPos -= transform.forward * Time.deltaTime * SpeedMod;
+                MyBody.AddForce(transform.forward * 10);
             }
             if (Input.GetKey("d"))
             {
-                MyPos += transform.right * Time.deltaTime * SpeedMod;
+                MyBody.AddForce(transform.right * -10);
             }
             if (Input.GetMouseButton(1))
             {
-                transform.Rotate(0, Input.GetAxis("Mouse X") * 110 * Time.deltaTime * SpeedMod, 0);
+                transform.Rotate(0, Input.GetAxis("Mouse X") * SpeedMod, 0);
             }
-            if (Input.GetKey(KeyCode.Space) && IsGrounded())
+            if (Input.GetKey(KeyCode.Space))
             {
                 MyBody.AddForce(0, 10.0f, 0, ForceMode.Impulse);
             }
-            Board.GetComponent<Transform>().position = MyPos;
-            transform.position = new Vector3(0, transform.position.y, 0);
         }
-       
+
+        if (MyBody.velocity.magnitude > MaxSpeed)
+        {
+            MyBody.velocity = MyBody.velocity.normalized * MaxSpeed;
+        }
     }
     bool IsGrounded()
     {
