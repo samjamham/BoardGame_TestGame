@@ -8,10 +8,10 @@ public class TownWaypoints
 
     public TownWaypoints(Transform aTransform)
     {
+        GenerateWaypoints(aTransform);
         ConnectWaypoints(aTransform);
     }
-
-    private void ConnectWaypoints(Transform aTransform)
+    private void GenerateWaypoints(Transform aTransform)
     {
         for (int i = 0; i < allWayPoints.Length; i++)
         {
@@ -29,18 +29,23 @@ public class TownWaypoints
         //out of town waypoints
 
         //Back left
-        allWayPoints[5].WayPointPosition = new Vector3(-5f, aTransform.position.y, 2.7f);
-        allWayPoints[6].WayPointPosition = new Vector3(-2.7f, aTransform.position.y, 5f);
+        allWayPoints[5].WayPointPosition = new Vector3(-43.0f, aTransform.position.y, 17.0f);
+        allWayPoints[6].WayPointPosition = new Vector3(-17.0f, aTransform.position.y, 43.0f);
         //Back right
-        allWayPoints[7].WayPointPosition = new Vector3(2.7f, aTransform.position.y, 5f);
-        allWayPoints[8].WayPointPosition = new Vector3(5f, aTransform.position.y, 2.7f);
+        allWayPoints[7].WayPointPosition = new Vector3(17.0f, aTransform.position.y, 43.0f);
+        allWayPoints[8].WayPointPosition = new Vector3(43.0f, aTransform.position.y, 17.0f);
         //Front right
-        allWayPoints[9].WayPointPosition = new Vector3(5f, aTransform.position.y, -2.7f);
-        allWayPoints[10].WayPointPosition = new Vector3(2.7f, aTransform.position.y, -5f);
+        allWayPoints[9].WayPointPosition = new Vector3(43.0f, aTransform.position.y, -17.0f);
+        allWayPoints[10].WayPointPosition = new Vector3(17.0f, aTransform.position.y, -43.0f);
         //Front left
-        allWayPoints[11].WayPointPosition = new Vector3(-2.7f, aTransform.position.y, -5f);
-        allWayPoints[12].WayPointPosition = new Vector3(-5f, aTransform.position.y, -2.7f);
+        allWayPoints[11].WayPointPosition = new Vector3(-17.0f, aTransform.position.y, -43.0f);
+        allWayPoints[12].WayPointPosition = new Vector3(-43.0f, aTransform.position.y, -17.0f);
 
+    }
+
+    private void ConnectWaypoints(Transform aTransform)
+    {
+       
         //Hardcoding conections for each waypoint 
         allWayPoints[0].Connections.Add(allWayPoints[1]);
         allWayPoints[0].Connections.Add(allWayPoints[2]);

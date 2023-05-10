@@ -27,6 +27,14 @@ public class CameraController : MonoBehaviour
                 CameraAngles[i].enabled = false;
             }
             CameraAngles[counter].enabled = true;
+            if (counter == 1)/*thirdPerson Cam*/
+            {
+                GetComponent<ThirdPersonCam>().target.GetComponent<PlayerControls>().IsActive = true;
+            }
+            else
+            {
+                GetComponent<ThirdPersonCam>().target.GetComponent<PlayerControls>().IsActive = false;
+            } 
         }
     }
 }

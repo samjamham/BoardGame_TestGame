@@ -9,6 +9,8 @@ public class PlayerControls : MonoBehaviour
     private Rigidbody MyBody;
     private float DistanceToGround;
 
+    public bool IsActive = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +21,8 @@ public class PlayerControls : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (IsGrounded())
-            { 
+        if (IsActive)
+        {
             if (Input.GetKey("w"))
             {
                 MyBody.AddForce(transform.forward * -10);
@@ -41,7 +43,7 @@ public class PlayerControls : MonoBehaviour
             {
                 transform.Rotate(0, Input.GetAxis("Mouse X") * SpeedMod, 0);
             }
-            if (Input.GetKey(KeyCode.Space))
+            if (IsGrounded() && Input.GetKey(KeyCode.Space))
             {
                 MyBody.AddForce(0, 10.0f, 0, ForceMode.Impulse);
             }
@@ -50,7 +52,7 @@ public class PlayerControls : MonoBehaviour
         if (MyBody.velocity.magnitude > MaxSpeed)
         {
             MyBody.velocity = MyBody.velocity.normalized * MaxSpeed;
-        }
+        }        
     }
     bool IsGrounded()
     {

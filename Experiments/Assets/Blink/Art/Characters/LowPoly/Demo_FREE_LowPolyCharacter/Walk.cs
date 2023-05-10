@@ -15,29 +15,32 @@ public class Walk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (MyAnimator != null)
+        if (GetComponentInParent<PlayerControls>().IsActive)
         {
-            if (MyAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !MyAnimator.IsInTransition(0))
+            if (MyAnimator != null)
             {
-                if (Input.GetKey(KeyCode.W))
+                if (MyAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !MyAnimator.IsInTransition(0))
                 {
-                    MyAnimator.SetTrigger("Forward");
-                }
-                else if (Input.GetKey(KeyCode.A))
-                {
-                    MyAnimator.SetTrigger("Left");
-                }
-                else if (Input.GetKey(KeyCode.S))
-                {
-                    MyAnimator.SetTrigger("Backward");
-                }
-                else if (Input.GetKey(KeyCode.D))
-                {
-                    MyAnimator.SetTrigger("Right");
-                }
-                else
-                {
-                    MyAnimator.SetTrigger("Idle");
+                    if (Input.GetKey(KeyCode.W))
+                    {
+                        MyAnimator.SetTrigger("Forward");
+                    }
+                    else if (Input.GetKey(KeyCode.A))
+                    {
+                        MyAnimator.SetTrigger("Left");
+                    }
+                    else if (Input.GetKey(KeyCode.S))
+                    {
+                        MyAnimator.SetTrigger("Backward");
+                    }
+                    else if (Input.GetKey(KeyCode.D))
+                    {
+                        MyAnimator.SetTrigger("Right");
+                    }
+                    else
+                    {
+                        MyAnimator.SetTrigger("Idle");
+                    }
                 }
             }
         }

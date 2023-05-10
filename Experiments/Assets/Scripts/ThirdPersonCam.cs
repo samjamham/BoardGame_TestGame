@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteAlways]
 public class ThirdPersonCam : CameraParent
 {
-    private float targetDistance = 20.0f;
+    private float targetDistance = 10.0f;
 
     void Start()
     {
@@ -18,7 +18,7 @@ public class ThirdPersonCam : CameraParent
             // rotate the camera
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             // move the camera position
-            Vector3 addY = new Vector3(0, 12, 0);
+            Vector3 addY = new Vector3(0, 6, 0);
             DestinationPos = target.transform.position + (target.transform.forward * targetDistance) + addY;
             transform.position = DestinationPos;
             transform.LookAt(target.transform.position);
