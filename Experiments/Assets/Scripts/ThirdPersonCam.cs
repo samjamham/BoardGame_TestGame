@@ -13,15 +13,12 @@ public class ThirdPersonCam : CameraParent
 
     void Update()
     {
-        if (GetComponent<ThirdPersonCam>().enabled == true)
-        {
-            // rotate the camera
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-            // move the camera position
-            Vector3 addY = new Vector3(0, 6, 0);
-            DestinationPos = target.transform.position + (target.transform.forward * targetDistance) + addY;
-            transform.position = DestinationPos;
-            transform.LookAt(target.transform.position);
-        }
+        // rotate the camera
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        // move the camera position
+        Vector3 addY = new Vector3(0, 6, 0);
+        DestinationPos = target.transform.position + (target.transform.forward * targetDistance) + addY;
+        transform.position = DestinationPos;
+        transform.LookAt(target.transform.position);
     }
 }
